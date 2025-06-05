@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر إلكترونيات - العرض الحديث</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #7209b7;
+            --danger-color: #ef233c;
+            --warning-color: #ff9e00;
+            --success-color: #4cc9f0;
+            --text-color: #2b2d42;
+            --bg-color: #f8f9fa;
+            --card-color: #ffffff;
+            --border-color: #e9ecef;
+            --gray-color: #6c757d;
+            --light-gray: #f1f3f5;
+        }
+
+        .dark-mode {
+            --primary-color: #4895ef;
+            --secondary-color: #4361ee;
+            --accent-color: #b5179e;
+            --danger-color: #f72585;
+            --warning-color: #f8961e;
+            --success-color: #4cc9f0;
+            --text-color: #f8f9fa;
+            --bg-color: #121212;
+            --card-color: #1e1e1e;
+            --border-color: #2d2d2d;
+            --gray-color: #adb5bd;
+            --light-gray: #252525;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', 'Segoe UI', sans-serif;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--light-gray);
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 14px;
+        }
+        
+        /* شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background-color: var(--light-gray);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.02);
+        }
+        
+        .logo i {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .logo h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(to right, white, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .search-bar {
+            display: flex;
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 1.2rem;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s;
+            padding-right: 2.5rem;
+        }
+        
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 0.8rem;
+            left: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .user-actions a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        
+        .user-actions a:hover {
+            transform: translateY(-2px);
+        }
+        
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(30deg);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .categories {
+            display: flex;
+            overflow-x: auto;
+            gap: 0.6rem;
+            padding-bottom: 0.4rem;
+        }
+        
+        .category-btn {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .category-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .category-btn.active {
+            background-color: white;
+            color: var(--primary-color);
+            font-weight: 600;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 1.8rem auto;
+            padding: 0 1.2rem;
+        }
+        
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            right: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+        
+        .view-all {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .view-all:hover {
+            color: var(--secondary-color);
+            gap: 0.4rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .product-card {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary-color);
+        }
+        
+        .product-image {
+            height: 180px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain;
+            transition: transform 0.4s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.04);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 0.6rem;
+            left: 0.6rem;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-info {
+            padding: 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-category {
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+        
+        .product-name {
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+        
+        .product-description {
+            color: var(--gray-color);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+            line-height: 1.4;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            color: var(--warning-color);
+            font-size: 0.8rem;
+        }
+        
+        .product-rating .rating-stars {
+            letter-spacing: 1px;
+            margin-left: 0.2rem;
+        }
+        
+        .product-rating .rating-count {
+            color: var(--gray-color);
+            font-size: 0.75rem;
+            margin-left: 0.4rem;
+            margin-right: auto;
+        }
+        
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .product-price {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .current-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: var(--gray-color);
+            font-size: 0.8rem;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            color: white;
+            font-size: 0.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .action-btn:hover::after {
+            opacity: 1;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .add-to-cart {
+            background-color: var(--primary-color);
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .edit-btn {
+            background-color: var(--warning-color);
+        }
+        
+        .edit-btn:hover {
+            background-color: #e68a00;
+        }
+        
+        .delete-btn {
+            background-color: var(--danger-color);
+        }
+        
+        .delete-btn:hover {
+            background-color: #d90429;
+        }
+        
+        .no-products {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray-color);
+        }
+        
+        .no-products i {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+            opacity: 0.7;
+        }
+        
+        .no-products h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 0.8rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            padding: 0.7rem 1.2rem;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.2s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+        }
+        
+        .notification::before {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
+        
+        .notification.success {
+            background-color: #4caf50;
+        }
+        
+        .notification.success::before {
+            content: '\f00c';
+        }
+        
+        .notification.warning {
+            background-color: #ff9800;
+        }
+        
+        .notification.warning::before {
+            content: '\f12a';
+        }
+        
+        .notification.danger {
+            background-color: #f44336;
+        }
+        
+        .notification.danger::before {
+            content: '\f057';
+        }
+        
+        .notification.info {
+            background-color: #2196f3;
+        }
+        
+        .notification.info::before {
+            content: '\f05a';
+        }
+        
+        /* تأثيرات الحركة */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .product-card {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .search-bar {
+                width: 100%;
+                margin: 0;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.2rem;
+            }
+            
+            .header-container {
+                padding: 0 1rem;
+            }
+            
+            main {
+                padding: 0 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-actions {
+                gap: 0.4rem;
+            }
+            
+            .action-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.75rem;
+            }
+            
+            .product-image {
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="top-bar">
+                <a href="#" class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <h1>تيك مارت</h1>
+                </a>
+                
+                <form class="search-bar" method="GET" action="#">
+                    <input type="text" name="search" placeholder="ابحث عن منتجات الإلكترونيات...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-user-circle"></i></a>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="categories">
+                <button class="category-btn active">الكل</button>
+                <button class="category-btn">أجهزة حاسوب</button>
+                <button class="category-btn">لابتوبات</button>
+                <button class="category-btn">مكونات الحاسوب</button>
+                <button class="category-btn">شاشات</button>
+                <button class="category-btn">طابعات</button>
+                <button class="category-btn">ملحقات</button>
+                <button class="category-btn">هواتف</button>
+                <button class="category-btn">أجهزة لوحية</button>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="products-header">
+            <h2 class="section-title">أحدث المنتجات</h2>
+            <a href="#" class="view-all">
+                عرض الكل
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+        
+        <div class="products-grid">
+            <!-- منتج 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">خصم 20%</span>
+                    <img src="https://via.placeholder.com/300x200/ECEFF1/2b2d42?text=PC+Gaming" alt="حاسوب ألعاب">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">أجهزة حاسوب</div>
+                    <h3 class="product-name">حاسوب ألعاب فاخر - RTX 4090</h3>
+                    <p class="product-description">حاسوب ألعاب بأعلى المواصفات مع معالج Intel Core i9-13900K وكرت شاشة NVIDIA RTX 4090 وذاكرة 64GB DDR5</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(128)</span>
+                        <span class="rating-stars">★★★★★</span>
+                    </div>
+                    
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">6,499,000 د.ع</span>
+                            <span class="original-price">7,999,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn add-to-cart" title="إضافة إلى السلة">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتج 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200/ECEFF1/2b2d42?text=MacBook+Pro" alt="ماك بوك برو">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">لابتوبات</div>
+                    <h3 class="product-name">ماك بوك برو 16 بوصة - M2 Max</h3>
+                    <p class="product-description">لابتوب أبل الجديد بمعالج M2 Max وذاكرة 32GB وشاشة Liquid Retina XDR بدقة 3456x2234 بكسل</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(94)</span>
+                        <span class="rating-stars">★★★★☆</span>
+                    </div>
+                    
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">4,250,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn add-to-cart" title="إضافة إلى السلة">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتج 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">جديد</span>
+                    <img src="https://via.placeholder.com/300x200/ECEFF1/2b2d42?text=RTX+4090" alt="كرت شاشة">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">مكونات الحاسوب</div>
+                    <h3 class="product-name">كرت شاشة NVIDIA RTX 4090</h3>
+                    <p class="product-description">أقوى كرت شاشة من NVIDIA بذاكرة 24GB GDDR6X و 16384 نواة CUDA وتقنية DLSS 3.0</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(76)</span>
+                        <span class="rating-stars">★★★★★</span>
+                    </div>
+                    
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">3,199,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn add-to-cart" title="إضافة إلى السلة">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتج 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">الأكثر مبيعاً</span>
+                    <img src="https://via.placeholder.com/300x200/ECEFF1/2b2d42?text=4K+Monitor" alt="شاشة 4K">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">شاشات</div>
+                    <h3 class="product-name">شاشة سامسونج 32 بوصة 4K UHD</h3>
+                    <p class="product-description">شاشة كمبيوتر بدقة 3840x2160 بوصة، تردد 144Hz، زمن استجابة 1ms، تقنية HDR600</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(215)</span>
+                        <span class="rating-stars">★★★★☆</span>
+                    </div>
+                    
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">1,250,000 د.ع</span>
+                            <span class="original-price">1,450,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn add-to-cart" title="إضافة إلى السلة">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتج 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200/ECEFF1/2b2d42?text=Mechanical+Keyboard" alt="لوحة مفاتيح">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">ملحقات</div>
+                    <h3 class="product-name">لوحة مفاتيح ميكانيكية RGB</h3>
+                    <p class="product-description">لوحة مفاتيح ميكانيكية بمفاتيح Cherry MX Red، إضاءة RGB قابلة للتخصيص، تصميم مقاوم للماء</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(182)</span>
+                        <span class="rating-stars">★★★★★</span>
+                    </div>
+                    
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">185,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn add-to-cart" title="إضافة إلى السلة">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتج 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">عرض خاص</span>
+                    <img src="https://via.placeholder.com/300x200/ECEFF1/2b2d42?text=Wireless+Mouse" alt="ماوس لاسلكي">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">ملحقات</div>
+                    <h3 class="product-name">ماوس لاسلكي لوجيتك MX Master 3</h3>
+                    <p class="product-description">ماوس لاسلكي متطور مع تقنية Darkfield، شحن سريع، 7 أزرار قابلة للتخصيص، تصميم مريح</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(167)</span>
+                        <span class="rating-stars">★★★★★</span>
+                    </div>
+                    
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">120,000 د.ع</span>
+                            <span class="original-price">150,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn add-to-cart" title="إضافة إلى السلة">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // نظام الليل والنهار
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        // تفعيل أزرار التصنيفات
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // تأثير النقر
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+
+        // دالة إضافة إلى السلة
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('.product-name').textContent;
+                
+                // تأثير النقر
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+                
+                // إشعار
+                showNotification(`تمت إضافة "${productName}" إلى السلة`);
+            });
+        });
+
+        // دالة تعديل المنتج
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('.product-name').textContent;
+                
+                // تأثير النقر
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                    showNotification(`ستقوم بتعديل المنتج: "${productName}"`, 'warning');
+                }, 200);
+            });
+        });
+
+        // دالة حذف المنتج
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('.product-name').textContent;
+                
+                // تأثير النقر
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+                
+                if(confirm(`هل أنت متأكد من حذف المنتج "${productName}"؟`)) {
+                    productCard.style.transform = 'scale(0.9)';
+                    productCard.style.opacity = '0';
+                    productCard.style.margin = '0';
+                    productCard.style.height = '0';
+                    productCard.style.padding = '0';
+                    productCard.style.border = 'none';
+                    
+                    setTimeout(() => {
+                        productCard.remove();
+                        showNotification(`تم حذف المنتج "${productName}"`, 'danger');
+                    }, 300);
+                }
+            });
+        });
+
+        // دالة لعرض الإشعارات
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateY(0)';
+            }, 10);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(-20px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // إضافة تأثير النقر على البطاقات
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.closest('.product-actions *')) {
+                    const productName = this.querySelector('.product-name').textContent;
+                    showNotification(`عرض تفاصيل المنتج: "${productName}"`, 'info');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

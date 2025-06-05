@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل المنتج - متجر إلكترونيات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-laptop-code"></i>
+                <h1>تيك مارت</h1>
+            </a>
+            
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h1 class="page-title">
+            <i class="fas fa-edit"></i>
+            تعديل المنتج
+            <span class="product-status status-active">
+                <i class="fas fa-circle"></i>
+                نشط
+            </span>
+        </h1>
+        
+        <form class="product-form" id="editProductForm">
+            <div class="form-grid">
+                <!-- قسم المنتج -->
+                <div class="form-group">
+                    <label for="productCategory">قسم المنتج</label>
+                    <select class="form-select" id="productCategory" required>
+                        <option value="" disabled>اختر القسم</option>
+                        <option value="أجهزة حاسوب" selected>أجهزة حاسوب</option>
+                        <option value="لابتوبات">لابتوبات</option>
+                        <option value="مكونات الحاسوب">مكونات الحاسوب</option>
+                        <option value="شاشات">شاشات</option>
+                        <option value="طابعات">طابعات</option>
+                        <option value="ملحقات">ملحقات</option>
+                        <option value="هواتف">هواتف</option>
+                        <option value="أجهزة لوحية">أجهزة لوحية</option>
+                    </select>
+                </div>
+                
+                <!-- صورة المنتج -->
+                <div class="form-group image-upload-container">
+                    <label>صورة المنتج</label>
+                    <img id="imagePreview" class="image-preview" src="#" alt="صورة المنتج الحالية">
+                    <div class="image-upload" id="imageUpload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>انقر لتغيير صورة المنتج</p>
+                        <small>الحجم الأقصى: 5MB (JPEG, PNG, WEBP)</small>
+                    </div>
+                    <input type="file" id="productImage" accept="image/*" style="display: none;">
+                </div>
+                
+                <!-- اسم المنتج -->
+                <div class="form-group">
+                    <label for="productName">اسم المنتج</label>
+                    <input type="text" class="form-control" id="productName" value="حاسوب ألعاب فاخر - RTX 4090" placeholder="أدخل اسم المنتج" required>
+                </div>
+                
+                <!-- علامة المنتج -->
+                <div class="form-group">
+                    <label for="productBadge">علامة المنتج (اختياري)</label>
+                    <div class="badge-input">
+                        <input type="text" class="form-control" id="productBadge" value="خصم 20%" placeholder="أدخل علامة للمنتج">
+                        <span class="badge-preview" id="badgePreview">خصم 20%</span>
+                    </div>
+                </div>
+                
+                <!-- وصف المنتج -->
+                <div class="form-group full-width">
+                    <label for="productDescription">وصف المنتج</label>
+                    <div class="textarea-container">
+                        <textarea class="form-control" id="productDescription" rows="4" placeholder="أدخل وصف مفصل للمنتج..." required>حاسوب ألعاب بأعلى المواصفات مع معالج Intel Core i9-13900K وكرت شاشة NVIDIA RTX 4090 وذاكرة 64GB DDR5</textarea>
+                    </div>
+                </div>
+                
+                <!-- أسعار المنتج -->
+                <div class="form-group full-width">
+                    <label>أسعار المنتج</label>
+                    <div class="price-inputs">
+                        <div class="form-group">
+                            <label for="productPrice">السعر الحالي (د.ع)</label>
+                            <input type="number" class="form-control" id="productPrice" value="6499000" placeholder="أدخل السعر الحالي" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="originalPrice">السعر الأصلي (اختياري)</label>
+                            <input type="number" class="form-control" id="originalPrice" value="7999000" placeholder="أدخل السعر الأصلي" min="0" step="0.01">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- حالة المنتج -->
+                <div class="form-group full-width">
+                    <label>حالة المنتج</label>
+                    <div class="status-options">
+                        <label class="status-option">
+                            <input type="radio" name="productStatus" value="active" checked>
+                            <span>نشط</span>
+                        </label>
+                        <label class="status-option">
+                            <input type="radio" name="productStatus" value="inactive">
+                            <span>غير نشط</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- أزرار الإجراءات -->
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    حفظ التعديلات
+                </button>
+                <button type="button" class="btn btn-secondary" id="cancelBtn">
+                    <i class="fas fa-times"></i>
+                    إلغاء
+                </button>
+                <button type="button" class="btn btn-danger" id="deleteBtn">
+                    <i class="fas fa-trash"></i>
+                    حذف المنتج
+                </button>
+            </div>
+        </form>
+    </div>
+
+<style>
+        :root {
+            --primary-color: #4361ee;
+            --primary-light: #eef2ff;
+            --secondary-color: #3a0ca3;
+            --accent-color: #7209b7;
+            --danger-color: #ef233c;
+            --warning-color: #ff9e00;
+            --success-color: #4cc9f0;
+            --text-color: #2b2d42;
+            --text-light: #5a5d7a;
+            --bg-color: #f8f9fa;
+            --card-color: #ffffff;
+            --border-color: #e9ecef;
+            --gray-color: #6c757d;
+            --light-gray: #f1f3f5;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --radius: 8px;
+            --radius-lg: 12px;
+        }
+
+        .dark-mode {
+            --primary-color: #4895ef;
+            --primary-light: #0a1f44;
+            --secondary-color: #4361ee;
+            --accent-color: #b5179e;
+            --danger-color: #f72585;
+            --warning-color: #f8961e;
+            --success-color: #4cc9f0;
+            --text-color: #f8f9fa;
+            --text-light: #d1d5db;
+            --bg-color: #121212;
+            --card-color: #1e1e1e;
+            --border-color: #2d2d2d;
+            --gray-color: #adb5bd;
+            --light-gray: #252525;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            transition: var(--transition);
+            line-height: 1.5;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 576px) {
+            body {
+                font-size: 14px;
+            }
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.75rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.02);
+        }
+        
+        .logo i {
+            font-size: 1.25rem;
+            color: white;
+        }
+        
+        .logo h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1rem;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(30deg);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+        
+        .product-form {
+            background-color: var(--card-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            margin-bottom: 2rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            transition: var(--transition);
+            background-color: var(--card-color);
+            color: var(--text-color);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            background-color: var(--card-color);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 0.75rem center;
+            background-size: 12px 10px;
+        }
+        
+        .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .image-upload-container {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .image-upload {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background-color: var(--light-gray);
+            height: 200px;
+        }
+        
+        .image-upload:hover {
+            border-color: var(--primary-color);
+            background-color: var(--primary-light);
+        }
+        
+        .image-upload i {
+            font-size: 2rem;
+            color: var(--gray-color);
+            margin-bottom: 0.75rem;
+            transition: var(--transition);
+        }
+        
+        .image-upload:hover i {
+            color: var(--primary-color);
+        }
+        
+        .image-upload p {
+            color: var(--gray-color);
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .image-upload:hover p {
+            color: var(--text-color);
+        }
+        
+        .image-upload small {
+            color: var(--gray-color);
+            font-size: 0.75rem;
+            transition: var(--transition);
+        }
+        
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: var(--radius);
+            display: none;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            background-color: var(--light-gray);
+        }
+        
+        .badge-input {
+            position: relative;
+        }
+        
+        .badge-input .form-control {
+            padding-right: 80px;
+        }
+        
+        .badge-preview {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            pointer-events: none;
+            opacity: 0;
+            transition: var(--transition);
+            max-width: 70px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .badge-input input:focus + .badge-preview,
+        .badge-input input:not(:placeholder-shown) + .badge-preview {
+            opacity: 1;
+        }
+        
+        .price-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .price-inputs .form-group {
+            flex: 1;
+        }
+        
+        .textarea-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+        }
+        
+        .textarea-container textarea {
+            resize: none;
+            width: 100%;
+            min-height: 120px;
+            overflow-y: auto;
+            border: none;
+            padding: 0.75rem;
+            background-color: var(--card-color);
+            color: var(--text-color);
+            font-family: inherit;
+            line-height: 1.5;
+        }
+        
+        .textarea-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(to top, var(--card-color), transparent);
+            pointer-events: none;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 2px 8px rgba(67, 97, 238, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d00000;
+            transform: translateY(-2px);
+        }
+        
+        .form-actions {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-top: 1.5rem;
+            gap: 0.75rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius);
+            color: white;
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            max-width: 90%;
+            text-align: center;
+        }
+        
+        .notification.success {
+            background: linear-gradient(to right, #4caf50, #2e7d32);
+        }
+        
+        .notification.error {
+            background: linear-gradient(to right, #f44336, #c62828);
+        }
+        
+        .notification i {
+            font-size: 1rem;
+        }
+        
+        .product-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            margin-right: 0.5rem;
+        }
+        
+        .status-active {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #2e7d32;
+        }
+        
+        .status-inactive {
+            background-color: rgba(239, 35, 60, 0.2);
+            color: #d00000;
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+                padding: 0 1.5rem;
+            }
+            
+            .product-form {
+                padding: 2rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 2;
+            }
+            
+            .price-inputs {
+                flex-direction: row;
+            }
+            
+            .form-actions {
+                flex-direction: row;
+            }
+            
+            .btn {
+                width: auto;
+            }
+            
+            .image-upload, .image-preview {
+                height: 220px;
+            }
+            
+            .textarea-container textarea {
+                min-height: 150px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .container {
+                max-width: 960px;
+            }
+            
+            .page-title {
+                font-size: 1.75rem;
+            }
+            
+            .form-control, .form-select {
+                padding: 0.9rem;
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.9rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .image-upload, .image-preview {
+                height: 250px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+        }
+        
+        .form-control:focus, .form-select:focus {
+            transform: translateY(-1px);
+        }
+        
+        .btn:active {
+            transform: translateY(1px) !important;
+            box-shadow: none !important;
+        }
+        
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1320px;
+            }
+        }
+        
+        @media (min-width: 768px)
+                @media (min-width: 768px) and (orientation: landscape) {
+            .image-upload, .image-preview {
+                height: 180px;
+            }
+        }
+</style>
+
+    <script>
+        // نظام الليل والنهار
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // التحقق من تفضيلات المستخدم للنظام المظلم
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+        
+        // تطبيق الوضع المبدئي
+        if (savedTheme === 'dark' || (prefersDark && savedTheme !== 'light')) {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.classList.remove('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', 'light');
+        }
+        
+        // الاستماع لتغيرات النظام
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (localStorage.getItem('theme') === null) {
+                if (e.matches) {
+                    body.classList.add('dark-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    body.classList.remove('dark-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+            }
+        });
+        
+        // تبديل الوضع المظلم/الفاتح
+        themeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // معاينة صورة المنتج
+        const imageUpload = document.getElementById('imageUpload');
+        const productImage = document.getElementById('productImage');
+        const imagePreview = document.getElementById('imagePreview');
+        
+        imageUpload.addEventListener('click', function() {
+            productImage.click();
+        });
+        
+        productImage.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // التحقق من حجم الملف
+                if (file.size > 5 * 1024 * 1024) {
+                    showNotification('حجم الملف يجب أن يكون أقل من 5MB', 'error');
+                    return;
+                }
+                
+                // التحقق من نوع الملف
+                const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+                if (!validTypes.includes(file.type)) {
+                    showNotification('نوع الملف غير مدعوم. يرجى استخدام صورة JPEG أو PNG أو WEBP', 'error');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imageUpload.style.display = 'none';
+                }
+                
+                reader.onerror = function() {
+                    showNotification('حدث خطأ أثناء قراءة الملف', 'error');
+                }
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // معاينة علامة المنتج
+        const productBadge = document.getElementById('productBadge');
+        const badgePreview = document.getElementById('badgePreview');
+        
+        productBadge.addEventListener('input', function() {
+            badgePreview.textContent = this.value;
+            badgePreview.style.opacity = this.value ? '1' : '0';
+        });
+        
+        // تحديث حالة المنتج
+        const statusRadios = document.querySelectorAll('input[name="productStatus"]');
+        const statusDisplay = document.querySelector('.product-status');
+        
+        statusRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'active') {
+                    statusDisplay.className = 'product-status status-active';
+                    statusDisplay.innerHTML = '<i class="fas fa-circle"></i> نشط';
+                } else {
+                    statusDisplay.className = 'product-status status-inactive';
+                    statusDisplay.innerHTML = '<i class="fas fa-circle"></i> غير نشط';
+                }
+            });
+        });
+        
+        // إرسال النموذج
+        document.getElementById('editProductForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // جمع بيانات المنتج
+            const productData = {
+                category: document.getElementById('productCategory').value,
+                name: document.getElementById('productName').value,
+                description: document.getElementById('productDescription').value,
+                price: parseFloat(document.getElementById('productPrice').value),
+                originalPrice: document.getElementById('originalPrice').value 
+                            ? parseFloat(document.getElementById('originalPrice').value) 
+                            : null,
+                badge: productBadge.value || null,
+                status: document.querySelector('input[name="productStatus"]:checked').value,
+                image: imagePreview.src
+            };
+            
+            // هنا يمكنك إضافة كود لإرسال البيانات إلى الخادم
+            console.log('بيانات المنتج المعدلة:', productData);
+            
+            // عرض إشعار النجاح
+            showNotification('تم تحديث المنتج بنجاح', 'success');
+        });
+        
+        // زر الإلغاء
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+            if(confirm('هل تريد إلغاء التعديلات؟ سيتم فقدان جميع التغييرات غير المحفوظة.')) {
+                window.location.href = 'products.html';
+            }
+        });
+        
+        // زر الحذف
+        document.getElementById('deleteBtn').addEventListener('click', function() {
+            if(confirm('هل أنت متأكد من حذف هذا المنتج؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                // هنا يمكنك إضافة كود لحذف المنتج
+                showNotification('تم حذف المنتج بنجاح', 'success');
+                setTimeout(() => {
+                    window.location.href = 'products.html';
+                }, 1500);
+            }
+        });
+        
+        // دالة عرض الإشعارات
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            let icon = '';
+            if (type === 'success') {
+                icon = '<i class="fas fa-check-circle"></i>';
+                notification.style.background = 'linear-gradient(to right, #4caf50, #2e7d32)';
+            } else if (type === 'error') {
+                icon = '<i class="fas fa-exclamation-circle"></i>';
+                notification.style.background = 'linear-gradient(to right, #f44336, #c62828)';
+            } else {
+                icon = '<i class="fas fa-info-circle"></i>';
+                notification.style.background = 'linear-gradient(to right, #2196F3, #1565C0)';
+            }
+            
+            notification.innerHTML = `${icon} ${message}`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateY(0)';
+            }, 10);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(-20px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        // تحسينات للأجهزة التي تستخدم اللمس
+        document.addEventListener('touchstart', function() {}, {passive: true});
+        
+        // منع التكبير عند النقر المزدوج على الأجهزة المحمولة
+        document.addEventListener('dblclick', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // تحميل بيانات المنتج عند فتح الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            // هنا يمكنك جلب بيانات المنتج من الخادم
+            // هذه مجرد بيانات وهمية للتوضيح
+            const productData = {
+                id: 123,
+                category: "أجهزة حاسوب",
+                name: "حاسوب ألعاب فاخر - RTX 4090",
+                description: "حاسوب ألعاب بأعلى المواصفات مع معالج Intel Core i9-13900K وكرت شاشة NVIDIA RTX 4090 وذاكرة 64GB DDR5",
+                price: 6499000,
+                originalPrice: 7999000,
+                badge: "خصم 20%",
+                status: "active",
+                image: "https://via.placeholder.com/300x200/ECEFF1/2b2d42?text=Product+Image"
+            };
+
+            // تعبئة النموذج ببيانات المنتج
+            document.getElementById('productCategory').value = productData.category;
+            document.getElementById('productName').value = productData.name;
+            document.getElementById('productDescription').value = productData.description;
+            document.getElementById('productPrice').value = productData.price;
+            document.getElementById('originalPrice').value = productData.originalPrice;
+            document.getElementById('productBadge').value = productData.badge;
+            badgePreview.textContent = productData.badge;
+            badgePreview.style.opacity = '1';
+            document.querySelector(`input[name="productStatus"][value="${productData.status}"]`).checked = true;
+            imagePreview.style.display = 'block';
+            imageUpload.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
