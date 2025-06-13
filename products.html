@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>All Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="top-bar">
+                <a href="#" class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <h1>صفحة جميع المحتويات</h1>
+                </a>
+                
+                <form class="search-bar" method="GET" action="#">
+                    <input type="text" name="search" placeholder="ابحث عن منتجات الإلكترونيات...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="user-actions">
+                    <button class="mobile-categories-btn" id="mobileCategoriesBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <a href="#"><i class="fas fa-user-circle"></i></a>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="categories">
+                <button class="category-btn active">الكل</button>
+                <button class="category-btn">أجهزة حاسوب</button>
+                <button class="category-btn">لابتوبات</button>
+                <button class="category-btn">مكونات الحاسوب</button>
+                <button class="category-btn">شاشات</button>
+                <button class="category-btn">طابعات</button>
+                <button class="category-btn">ملحقات</button>
+                <button class="category-btn">هواتف</button>
+                <button class="category-btn">أجهزة لوحية</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- قائمة الأقسام للجوال -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-categories-menu" id="mobileCategoriesMenu">
+        <div class="mobile-categories-header">
+            <h3 class="mobile-categories-title">أقسام المتجر</h3>
+            <button class="close-categories-btn" id="closeCategoriesBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-categories-list">
+            <button class="mobile-category-btn active">الكل</button>
+            <button class="mobile-category-btn">أجهزة حاسوب</button>
+            <button class="mobile-category-btn">لابتوبات</button>
+            <button class="mobile-category-btn">مكونات الحاسوب</button>
+            <button class="mobile-category-btn">شاشات</button>
+            <button class="mobile-category-btn">طابعات</button>
+            <button class="mobile-category-btn">ملحقات</button>
+            <button class="mobile-category-btn">هواتف</button>
+            <button class="mobile-category-btn">أجهزة لوحية</button>
+        </div>
+    </div>
+    <main>
+        <div class="products-header">
+            <h2 class="section-title">أحدث المنتجات</h2>
+            <a href="advadermn.php" class="view-all">
+               الرجوع الى صفحة الادمن
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+        <div class="products-grid">
+            <!-- منتج 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">خصم 20%</span>
+                    <img src=" " alt="حاسوب ألعاب">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">أجهزة حاسوب</div>
+                    <h3 class="product-name">حاسوب ألعاب فاخر - RTX 4090</h3>
+                    <p class="product-description">حاسوب ألعاب بأعلى المواصفات مع معالج Intel Core i9-13900K وكرت شاشة NVIDIA RTX 4090 وذاكرة 64GB DDR5</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(128)</span>
+                        <span class="rating-stars">★★★★★</span>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">6,499,000 د.ع</span>
+                            <span class="original-price">7,999,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- منتج 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="#" alt="ماك بوك برو">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">لابتوبات</div>
+                    <h3 class="product-name">ماك بوك برو 16 بوصة - M2 Max</h3>
+                    <p class="product-description">لابتوب أبل الجديد بمعالج M2 Max وذاكرة 32GB وشاشة Liquid Retina XDR بدقة 3456x2234 بكسل</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(94)</span>
+                        <span class="rating-stars">★★★★☆</span>
+                    </div>
+                    
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">4,250,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                           
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتج 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">جديد</span>
+                    <img src="" alt="كرت شاشة">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">مكونات الحاسوب</div>
+                    <h3 class="product-name">كرت شاشة NVIDIA RTX 4090</h3>
+                    <p class="product-description">أقوى كرت شاشة من NVIDIA بذاكرة 24GB GDDR6X و 16384 نواة CUDA وتقنية DLSS 3.0</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(76)</span>
+                        <span class="rating-stars">★★★★★</span>
+                    </div>
+                    
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">3,199,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                           
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتج 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">الأكثر مبيعاً</span>
+                    <img src="#" alt="شاشة 4K">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">شاشات</div>
+                    <h3 class="product-name">شاشة سامسونج 32 بوصة 4K UHD</h3>
+                    <p class="product-description">شاشة كمبيوتر بدقة 3840x2160 بوصة، تردد 144Hz، زمن استجابة 1ms، تقنية HDR600</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(215)</span>
+                        <span class="rating-stars">★★★★☆</span>
+                    </div>
+                    
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">1,250,000 د.ع</span>
+                            <span class="original-price">1,450,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                             
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتج 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="#" alt="لوحة مفاتيح">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">ملحقات</div>
+                    <h3 class="product-name">لوحة مفاتيح ميكانيكية RGB</h3>
+                    <p class="product-description">لوحة مفاتيح ميكانيكية بمفاتيح Cherry MX Red، إضاءة RGB قابلة للتخصيص، تصميم مقاوم للماء</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(182)</span>
+                        <span class="rating-stars">★★★★★</span>
+                    </div>
+                    
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">185,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                           
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتج 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">عرض خاص</span>
+                    <img src="#" alt="ماوس لاسلكي">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">ملحقات</div>
+                    <h3 class="product-name">ماوس لاسلكي لوجيتك MX Master 3</h3>
+                    <p class="product-description">ماوس لاسلكي متطور مع تقنية Darkfield، شحن سريع، 7 أزرار قابلة للتخصيص، تصميم مريح</p>
+                    
+                    <div class="product-rating">
+                        <span class="rating-count">(167)</span>
+                        <span class="rating-stars">★★★★★</span>
+                    </div>
+                    
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="current-price">120,000 د.ع</span>
+                            <span class="original-price">150,000 د.ع</span>
+                        </div>
+                        <div class="product-actions">
+                          
+                            <button class="action-btn edit-btn" title="تعديل المنتج">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="action-btn delete-btn" title="حذف المنتج">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

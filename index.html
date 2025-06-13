@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر تك - قطع كمبيوتر عالية الجودة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* الألوان الأساسية - الوضع النهاري */
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary-color: #06b6d4;
+            --dark-color: #1e293b;
+            --darker-color: #0f172a;
+            --light-color: #f8fafc;
+            --accent-color: #ef4444;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --text-color: #334155;
+            --text-light: #64748b;
+            --gray-light: #e2e8f0;
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+            --footer-bg: linear-gradient(to left, #0f172a, #1e293b);
+            
+            /* تأثيرات الظل */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* الانتقالات والزوايا */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 0.5rem;
+            --radius-lg: 0.75rem;
+        }
+        
+        /* الوضع الليلي */
+        [data-theme="dark"] {
+            --primary-color: #60a5fa;
+            --primary-dark: #3b82f6;
+            --secondary-color: #22d3ee;
+            --dark-color: #1e293b;
+            --darker-color: #0f172a;
+            --light-color: #f8fafc;
+            --accent-color: #f87171;
+            --success-color: #34d399;
+            --warning-color: #fbbf24;
+            --text-color: #e2e8f0;
+            --text-light: #94a3b8;
+            --gray-light: #334155;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --footer-bg: linear-gradient(to left, #020617, #0f172a);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* الهيدر الرئيسي */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--gray-light);
+            transition: background-color 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            flex-direction: row-reverse;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 2.5rem;
+            width: auto;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin: 0;
+            font-weight: 700;
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* شريط البحث */
+        .search-bar {
+            flex: 1;
+            max-width: 36rem;
+            margin: 0 1.5rem;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 0.75rem 1.25rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            transition: var(--transition);
+            padding-right: 3.5rem;
+            background-color: var(--bg-color);
+            box-shadow: var(--shadow-sm);
+            color: var(--text-color);
+        }
+        
+        .search-bar input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            background-color: var(--card-bg);
+        }
+        
+        .search-bar button {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .search-bar button:hover {
+            background: linear-gradient(to left, var(--primary-dark), var(--secondary-color));
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        /* أيقونات المستخدم والسلة */
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            flex-direction: row-reverse;
+        }
+        
+        .user-actions a {
+            color: var(--text-color);
+            font-size: 1.25rem;
+            position: relative;
+            text-decoration: none;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .user-actions a:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -0.25rem;
+            left: -0.25rem;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border: 2px solid var(--card-bg);
+        }
+        
+        /* القائمة الرئيسية */
+        nav {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--gray-light);
+            transition: background-color 0.3s ease;
+        }
+        
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: flex-start;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 0.5rem 0;
+        }
+        
+        nav ul::-webkit-scrollbar {
+            display: none;
+        }
+        
+        nav ul li {
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            display: block;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: var(--radius);
+            white-space: nowrap;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        
+        nav ul li.active a {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* زر القائمة المتنقلة */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+            z-index: 1001;
+        }
+        
+        .mobile-menu-btn:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+        }
+        
+        /* القائمة المتنقلة */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 350px;
+            height: 100vh;
+            background-color: var(--card-bg);
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+            scrollbar-width: none;
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .mobile-nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        
+        .mobile-nav-logo h2 {
+            font-size: 1.25rem;
+            color: var(--text-color);
+            margin: 0;
+            font-weight: 700;
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .mobile-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .mobile-close-btn:hover {
+            color: var(--accent-color);
+            transform: rotate(90deg);
+        }
+        
+        /* شريط البحث في القائمة المتنقلة */
+        .mobile-search-container {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .mobile-search-container input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .mobile-nav-links {
+            flex: 1;
+            padding: 1rem;
+            list-style: none;
+        }
+        
+        .mobile-nav-links li a {
+            display: block;
+            padding: 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .mobile-nav-links li a:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .mobile-nav-links li.active a {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* أيقونات المستخدم في القائمة المتنقلة */
+        .mobile-user-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border-top: 1px solid var(--gray-light);
+            margin-top: auto;
+        }
+        
+        .mobile-user-actions a {
+            color: var(--text-color);
+            font-size: 1.25rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .mobile-user-actions a:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .mobile-cart-count {
+            position: absolute;
+            top: -0.25rem;
+            left: -0.25rem;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border: 2px solid var(--card-bg);
+        }
+        
+        /* المحتوى الرئيسي */
+        main {
+            max-width: 1280px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* قسم العروض الخاصة */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            border-radius: var(--radius-lg);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to left, rgba(59, 130, 246, 0.3), rgba(6, 182, 212, 0.3));
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            gap: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            background: linear-gradient(to left, var(--primary-dark), var(--secondary-color));
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .btn i {
+            font-size: 1rem;
+        }
+        
+        /* قسم المنتجات */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--text-color);
+            display: inline-block;
+            padding-bottom: 0.75rem;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 5rem;
+            height: 0.25rem;
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            border-radius: 0.25rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid var(--gray-light);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius);
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 1;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .product-badge.new {
+            background-color: var(--success-color);
+        }
+        
+        .product-badge.sale {
+            background-color: var(--primary-color);
+        }
+        
+        .product-image {
+            height: 12.5rem;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--bg-color);
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: var(--transition);
+            padding: 1rem;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 1.25rem;
+            border-top: 1px solid var(--gray-light);
+        }
+        
+        .product-category {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .product-description {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.5rem;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        
+        .price {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary-color);
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+        
+        .add-to-cart {
+            background: linear-gradient(to left, var(--dark-color), var(--darker-color));
+            color: white;
+            border: none;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        
+        .add-to-cart:hover {
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            transform: scale(1.1);
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            color: var(--warning-color);
+            font-size: 0.9rem;
+        }
+        
+        .product-rating .count {
+            color: var(--text-light);
+            margin-right: 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        /* قسم الفئات */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .category-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid var(--gray-light);
+            text-align: center;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+        
+        .category-image {
+            height: 10rem;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--bg-color);
+        }
+        
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .category-card:hover .category-image img {
+            transform: scale(1.1);
+        }
+        
+        .category-info {
+            padding: 1.5rem;
+        }
+        
+        .category-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        
+        /* قسم الأسئلة الشائعة */
+        .faq-section {
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+            border: 1px solid var(--gray-light);
+        }
+        
+        .accordion {
+            margin-top: 2rem;
+        }
+        
+        .accordion-item {
+            border-bottom: 1px solid var(--gray-light);
+            margin-bottom: 1rem;
+        }
+        
+        .accordion-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .accordion-header {
+            padding: 1rem 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+        
+        .accordion-header:hover {
+            color: var(--primary-color);
+        }
+        
+        .accordion-header::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .accordion-header.active::after {
+            content: '\f077';
+            color: var(--accent-color);
+        }
+        
+        .accordion-content {
+            padding-bottom: 1rem;
+            display: none;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+        
+        .accordion-content.show {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* قسم المدونات */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .blog-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--gray-light);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+        
+        .blog-image {
+            height: 12rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .blog-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        
+        .blog-excerpt {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .read-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .read-more:hover {
+            color: var(--primary-dark);
+            gap: 0.75rem;
+        }
+        
+       /* الفوتر */
+        footer {
+            background: var(--footer-bg);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 3rem;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column {
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+            font-weight: 700;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 3rem;
+            height: 0.2rem;
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            border-radius: 0.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(-5px);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .footer-contact i {
+            margin-top: 0.2rem;
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .newsletter {
+            margin-top: 1.5rem;
+        }
+        
+        .newsletter p {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .newsletter input {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: var(--radius);
+            margin-bottom: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .newsletter input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        
+        .newsletter input::placeholder {
+            color: #94a3b8;
+        }
+        
+        .newsletter button {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .newsletter button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* خريطة جوجل */
+/* تحسينات الخريطة */
+.google-map {
+    margin-top: 1rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    height: 200px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.google-map:hover {
+    transform: translateY(-5px);
+}
+
+.google-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    filter: grayscale(20%) contrast(90%);
+    transition: var(--transition);
+}
+
+.google-map:hover iframe {
+    filter: grayscale(0%) contrast(100%);
+}
+
+.map-direction-btn {
+    display: block;
+    text-align: center;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    padding: 0.5rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.map-direction-btn:hover {
+    background: var(--primary-color);
+}
+
+.map-direction-btn i {
+    margin-left: 5px;
+}
+
+/* تحسينات النشرة البريدية */
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.newsletter-form button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* تحديث السنة تلقائياً */
+#current-year {
+    font-weight: bold;
+}
+
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .google-map {
+                height: 180px;
+            }
+        }
+        /* العودة لأعلى الصفحة */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 1024px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .search-bar {
+                display: none;
+            }
+            
+            .user-actions a:not(#mobileMenuBtn) {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav.desktop-nav {
+                display: none;
+            }
+            
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.65rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .products-grid, .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .faq-section {
+                padding: 2rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 2.5rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .products-grid, .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-to-top {
+                width: 2.5rem;
+                height: 2.5rem;
+                bottom: 1rem;
+                left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر الرئيسي -->
+
+<header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <h1>Vader</h1>
+                <img src="vader.png" alt="متجر تك">
+            </a>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="ابحث عن منتجات...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="user-actions">
+                <a href="#" class="desktop-only"><i class="fas fa-user"></i></a>
+                <a href="#" id="themeToggle" class="desktop-only"><i class="fas fa-moon"></i></a>
+                <a href="#" class="desktop-only">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- القائمة الرئيسية للشاشات الكبيرة -->
+        <nav class="desktop-nav">
+            <div class="nav-container">
+                <ul>
+                    <li class="active"><a href="#">الرئيسية</a></li>
+                    <li><a href="#">المنتجات</a></li>
+                    <li><a href="#">أجهزة الكمبيوتر</a></li>
+                    <li><a href="#">ملحقات الكمبيوتر</a></li>
+                    <li><a href="#">الشاشات</a></li>
+                    <li><a href="#">التخفيضات</a></li>
+                    <li><a href="#">المدونة</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </div>
+        </nav>
+</header>
+    
+<!-- القائمة المتنقلة -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <a href="#" class="mobile-nav-logo">
+                <img src="" alt="متجر تك">
+                <h2>متجر تك</h2>
+            </a>
+            <button class="mobile-close-btn" id="mobileCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <!-- شريط البحث في القائمة المتنقلة -->
+        <div class="mobile-search-container">
+            <input type="text" placeholder="ابحث عن منتجات...">
+        </div>
+        
+        <ul class="mobile-nav-links">
+            <li class="active"><a href="#">الرئيسية</a></li>
+            <li><a href="#">المنتجات</a></li>
+            <li><a href="#">أجهزة الكمبيوتر</a></li>
+            <li><a href="#">ملحقات الكمبيوتر</a></li>
+            <li><a href="#">الشاشات</a></li>
+            <li><a href="#">التخفيضات</a></li>
+            <li><a href="#">المدونة</a></li>
+            <li><a href="#">اتصل بنا</a></li>
+        </ul>
+        
+        <!-- أيقونات المستخدم في القائمة المتنقلة -->
+        <div class="mobile-user-actions">
+            <a href="#"><i class="fas fa-user"></i></a>
+            <a href="#" id="mobileThemeToggle"><i class="fas fa-moon"></i></a>
+            <a href="#">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="mobile-cart-count">3</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- المحتوى الرئيسي -->
+<main>
+        <!-- قسم العروض الخاصة -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>أفضل قطع الكمبيوتر بأسعار تنافسية</h2>
+                <p>اكتشف أحدث معالجات، كروت شاشة، ذواكر وأكثر مع ضمان وجودة عالية</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn">العروض الخاصة</a>
+                    <a href="#" class="btn btn-outline">تصفح المنتجات</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم المنتجات المميزة -->
+        <section class="featured-products">
+            <div class="section-title">
+                <h2>المنتجات المميزة</h2>
+            </div>
+            
+            <div class="products-grid">
+                <!-- منتج 1 -->
+                <div class="product-card">
+                    <span class="product-badge new">جديد</span>
+                    <div class="product-image">
+                        <img src=" " alt="معالج إنتل كور i9">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">المعالجات</span>
+                        <h3 class="product-title">معالج إنتل كور i9-13900K</h3>
+                        <p class="product-description">معالج قوي بمواصفات عالية لأداء متميز في الألعاب والتطبيقات الاحترافية</p>
+                        <div class="product-rating">
+                            <span class="count">(24 تقييم)</span>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="product-price">
+                            <div>
+                                <span class="price">2,499 ر.س</span>
+                                <span class="old-price">2,799 ر.س</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- منتج 2 -->
+                <div class="product-card">
+                    <span class="product-badge">الأكثر مبيعاً</span>
+                    <div class="product-image">
+                        <img src=" " alt="كرت شاشة NVIDIA">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">كروت الشاشة</span>
+                        <h3 class="product-title">كرت شاشة NVIDIA RTX 4090</h3>
+                        <p class="product-description">أقوى كرت شاشة من NVIDIA بتقنية Ray Tracing لأداء غير مسبوق في الألعاب</p>
+                        <div class="product-rating">
+                            <span class="count">(18 تقييم)</span>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <div>
+                                <span class="price">5,999 ر.س</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- منتج 3 -->
+                <div class="product-card">
+                    <span class="product-badge sale">عرض خاص</span>
+                    <div class="product-image">
+                        <img src=" " alt="ذاكرة RAM">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">الذاكرة</span>
+                        <h3 class="product-title">ذاكرة كورسير 32GB DDR5</h3>
+                        <p class="product-description">ذاكرة عالية السرعة بتردد 5600MHz مع إضاءة RGB</p>
+                        <div class="product-rating">
+                            <span class="count">(12 تقييم)</span>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <div>
+                                <span class="price">899 ر.س</span>
+                                <span class="old-price">1,099 ر.س</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- منتج 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src=" " alt="لوحة أم">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">لوحات الأم</span>
+                        <h3 class="product-title">لوحة أم ASUS ROG Z790</h3>
+                        <p class="product-description">لوحة أم مخصصة للألعاب بدعم كامل لأحدث المعالجات</p>
+                        <div class="product-rating">
+                            <span class="count">(8 تقييم)</span>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="product-price">
+                            <div>
+                                <span class="price">1,799 ر.س</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم الفئات -->
+        <section class="categories">
+            <div class="section-title">
+                <h2>تصفح حسب الفئة</h2>
+            </div>
+            
+            <div class="categories-grid">
+                <!-- فئة 1 -->
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src=" " alt="المعالجات">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">المعالجات</h3>
+                        <a href="#" class="btn">تصفح الآن</a>
+                    </div>
+                </div>
+                
+                <!-- فئة 2 -->
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src=" " alt="كروت الشاشة">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">كروت الشاشة</h3>
+                        <a href="#" class="btn">تصفح الآن</a>
+                    </div>
+                </div>
+                
+                <!-- فئة 3 -->
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src=" " alt="لوحات الأم">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">لوحات الأم</h3>
+                        <a href="#" class="btn">تصفح الآن</a>
+                    </div>
+                </div>
+                
+                <!-- فئة 4 -->
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src=" " alt="ملحقات الكمبيوتر">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">ملحقات الكمبيوتر</h3>
+                        <a href="#" class="btn">تصفح الآن</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم الأسئلة الشائعة -->
+        <section class="faq-section">
+            <div class="section-title">
+                <h2>أسئلة شائعة</h2>
+            </div>
+            
+            <div class="accordion">
+                <!-- سؤال 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        كيف يمكنني اختيار قطع الكمبيوتر المناسبة؟
+                    </div>
+                    <div class="accordion-content">
+                        <p>لاختيار قطع الكمبيوتر المناسبة، يجب أولاً تحديد الغرض من استخدام الجهاز (ألعاب، تصميم، أعمال عادية). ثم التأكد من توافق القطع مع بعضها (المعالج مع لوحة الأم، الذاكرة مع اللوحة الأم). كما ينصح بمراجعة متطلبات البرامج التي ستستخدمها لمعرفة المواصفات المطلوبة.</p>
+                    </div>
+                </div>
+                
+                <!-- سؤال 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        ما هي سياسة الإرجاع والاستبدال؟
+                    </div>
+                    <div class="accordion-content">
+                        <p>يمكنك إرجاع أو استبدال المنتج خلال 14 يومًا من تاريخ الشراء بشرط أن يكون المنتج بحالته الأصلية مع جميع ملحقاته وعبواته. بعض المنتجات مثل البرمجيات والمنتجات المفتوحة العبوة قد لا تكون قابلة للإرجاع. يرجى مراجعة صفحة سياسة الإرجاع للمزيد من التفاصيل.</p>
+                    </div>
+                </div>
+                
+                <!-- سؤال 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        هل تقدمون خدمة التوصيل إلى جميع المدن؟
+                    </div>
+                    <div class="accordion-content">
+                        <p>نعم، نقدم خدمة التوصيل إلى جميع مدن المملكة العربية السعودية. تختلف تكلفة التوصيل حسب المدينة وحجم الطلب. التوصيل داخل مدينة الرياض مجاني للطلبات فوق 500 ريال.</p>
+                    </div>
+                </div>
+                
+                <!-- سؤال 4 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        كيف يمكنني متابعة طلبي؟
+                    </div>
+                    <div class="accordion-content">
+                        <p>بعد إتمام عملية الشراء، سيصلك رابط متابعة الطلب على بريدك الإلكتروني. يمكنك أيضًا تسجيل الدخول إلى حسابك في الموقع ومتابعة حالة الطلب من قسم "طلباتي".</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم المدونة -->
+        <section class="blog-section">
+            <div class="section-title">
+                <h2>أحدث المقالات</h2>
+            </div>
+            
+            <div class="blog-grid">
+                <!-- مقال 1 -->
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src=" " alt="كيفية بناء جهاز كمبيوتر">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date"><i class="far fa-calendar-alt"></i> 15 مايو 2023</span>
+                        <h3 class="blog-title">كيفية بناء جهاز كمبيوتر للألعاب</h3>
+                        <p class="blog-excerpt">دليل شامل لاختيار أفضل قطع الكمبيوتر لبناء جهاز ألعاب قوي بميزانية مناسبة. تعلم كيفية اختيار المعالج، كرت الشاشة، الذاكرة وغيرها من المكونات الأساسية.</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <!-- مقال 2 -->
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src=" " alt="مقارنة المعالجات">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date"><i class="far fa-calendar-alt"></i> 10 مايو 2023</span>
+                        <h3 class="blog-title">مقارنة بين أحدث معالجات إنتل وAMD</h3>
+                        <p class="blog-excerpt">أيهما الأفضل لاحتياجاتك؟ مقارنة شاملة بين أحدث معالجات إنتل وAMD من حيث الأداء، استهلاك الطاقة، السعر وأفضل استخدام لكل منها.</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <!-- مقال 3 -->
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src=" " alt="ترقية الكمبيوتر">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date"><i class="far fa-calendar-alt"></i> 5 مايو 2023</span>
+                        <h3 class="blog-title">أفضل ترقيات لتحسين أداء الكمبيوتر</h3>
+                        <p class="blog-excerpt">اكتشف أكثر الترقيات فعالية من حيث التكلفة لتحسين أداء جهازك الحالي دون الحاجة لشراء جهاز جديد. من إضافة SSD إلى ترقية الذاكرة.</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+</main>
+    
+<footer>
+    <div class="footer-container">
+        <!-- العمود الأول: معلومات المتجر -->
+        <div class="footer-column">
+            <h3>متجر تك</h3>
+            <p>متجر متخصص في قطع الكمبيوتر وملحقاته، نقدم منتجات عالية الجودة بأسعار تنافسية مع خدمة عملاء مميزة.</p>
+            
+            <div class="social-links">
+                <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        
+        <!-- العمود الثالث: معلومات الاتصال -->
+        <div class="footer-column">
+            <h3>اتصل بنا</h3>
+            <div class="footer-contact">
+                <p><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</p>
+                <p><i class="fas fa-phone"></i> +966 12 345 6789</p>
+                <p><i class="fas fa-envelope"></i> info@techstore.com</p>
+                <p><i class="fas fa-clock"></i> الأحد - الخميس: 9 ص - 5 م</p>
+            </div>
+        </div>
+
+        <!-- العمود الرابع: الخريطة والنشرة البريدية -->
+        <div class="footer-column">
+            <div class="google-map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d833.5788195876402!2d44.44581683044624!3d33.31057211910998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x155781000df5262d%3A0x7f80394d9e49a453!2z2YXZg9iq2Kgg2YHZitiv2LE!5e0!3m2!1sar!2siq!4v1749780219174!5m2!1sar!2siq" 
+                    width="100%" 
+                    height="300" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="موقع متجر تك على الخريطة"
+                    aria-label="خريطة موقع المتجر">
+                </iframe>
+                <a href="https://maps.google.com?q=24.7135516,46.6752967" class="map-direction-btn" target="_blank">
+                    <i class="fas fa-directions"></i> احصل على اتجاهات
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>&copy; <span id="current-year"></span> متجر تك. جميع الحقوق محفوظة.</p>
+    </div>
+</footer>
+    <script>
+        // تفعيل الأكورديون للأسئلة الشائعة
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                header.classList.toggle('active');
+                const content = header.nextElementSibling;
+                
+                if (header.classList.contains('active')) {
+                    content.style.display = 'block';
+                    content.classList.add('show');
+                } else {
+                    content.style.display = 'none';
+                    content.classList.remove('show');
+                }
+                
+                // إغلاق العناصر الأخرى
+                accordionHeaders.forEach(otherHeader => {
+                    if (otherHeader !== header && otherHeader.classList.contains('active')) {
+                        otherHeader.classList.remove('active');
+                        otherHeader.nextElementSibling.style.display = 'none';
+                        otherHeader.nextElementSibling.classList.remove('show');
+                    }
+                });
+            });
+        });
+        
+        // وظيفة إضافة إلى السلة
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const productCard = button.closest('.product-card');
+                const productName = productCard.querySelector('.product-title').textContent;
+                const price = productCard.querySelector('.price').textContent;
+                
+                // تحديث عداد السلة
+                const cartCount = document.querySelector('.cart-count');
+                const mobileCartCount = document.querySelector('.mobile-cart-count');
+                let count = parseInt(cartCount.textContent);
+                cartCount.textContent = count + 1;
+                mobileCartCount.textContent = count + 1;
+                
+                // إنشاء إشعار
+                showNotification(`تمت إضافة ${productName} إلى سلة التسوق`);
+            });
+        });
+        
+        // وظيفة البحث
+        function searchProduct() {
+            const query = document.querySelector('.search-bar input').value;
+            if (query.trim() !== '') {
+                showNotification(`سيتم البحث عن: ${query}`);
+                // هنا يمكنك إضافة منطق البحث الفعلي
+            }
+        }
+        
+        // جعل شريط البحث يعمل عند الضغط على Enter
+        document.querySelector('.search-bar input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProduct();
+            }
+        });
+        
+        // زر القائمة المتنقلة
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuOverlay.classList.add('active');
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        mobileCloseBtn.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+        
+        mobileMenuOverlay.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+        
+        function closeMobileMenu() {
+            mobileMenuOverlay.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // إغلاق القائمة عند النقر على رابط
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+        
+        // زر العودة لأعلى الصفحة
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        // تبديل الوضع الليلي/النهاري
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        
+        // التحقق من تفضيلات المستخدم للنظام
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // تعيين الوضع الأولي
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            updateThemeIcons('dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            updateThemeIcons('light');
+        }
+        
+        // تحديث أيقونات الوضع الليلي/النهاري
+        function updateThemeIcons(theme) {
+            const icons = document.querySelectorAll('#themeToggle i, #mobileThemeToggle i');
+            icons.forEach(icon => {
+                if (theme === 'dark') {
+                    icon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    icon.classList.replace('fa-sun', 'fa-moon');
+                }
+            });
+        }
+        
+        // تبديل الوضع
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                updateThemeIcons('dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                updateThemeIcons('light');
+            }
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+        
+        // وظيفة عرض الإشعارات
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.left = '20px';
+            notification.style.backgroundColor = 'var(--success-color)';
+            notification.style.color = 'white';
+            notification.style.padding = '12px 24px';
+            notification.style.borderRadius = 'var(--radius)';
+            notification.style.zIndex = '1000';
+            notification.style.boxShadow = 'var(--shadow-lg)';
+            notification.style.transition = 'var(--transition)';
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateY(20px)';
+            
+            document.body.appendChild(notification);
+            
+            // إظهار الإشعار
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateY(0)';
+            }, 10);
+            
+            // إخفاء الإشعار بعد 3 ثواني
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(20px)';
+                
+                // إزالة الإشعار من DOM بعد انتهاء الانتقال
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        // تحديث السنة في حقوق النشر
+document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
